@@ -51,14 +51,14 @@ public class CarManager {
         return carManager;
     }
 
-    public static List<CarProperties> SearchSerialNumber(int serialNumber){
-        List<CarProperties> listOfCars = new ArrayList<CarProperties>();
+    public static List<CarProperties> searchModel(String modelName){
+        List<CarProperties> toUpdateCar = new ArrayList<CarProperties>();
         for (CarProperties carProperties: carList) {
-            if(carProperties.getCarSerialNumber() == serialNumber){
-                listOfCars.add(carProperties);
+            if(carProperties.getModelName() == null ? modelName == null : carProperties.getModelName().equals(modelName)){
+                toUpdateCar.add(carProperties);
             } 
         }
-        return listOfCars;
+        return toUpdateCar;
     }
     
     

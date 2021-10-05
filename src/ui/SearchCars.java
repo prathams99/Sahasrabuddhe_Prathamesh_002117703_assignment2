@@ -332,9 +332,7 @@ public class SearchCars extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
-    
-
-    
+     
     private void fillData() {
         DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
         dtm.setRowCount(0);

@@ -287,6 +287,7 @@ public class ViewCar extends javax.swing.JFrame {
             row[7] = setAvailable();
             row[8] = setCertificate();
             dtm.addRow(row);
+            System.out.println("HUEHUE" + setAvailable());
         }
         
         // Find the number of available cars as well as booked cars
@@ -315,15 +316,15 @@ public class ViewCar extends javax.swing.JFrame {
     }
     
         private String setAvailable() {
-            for (i=0; i < carList.indexOf(this); i++) {
+            for (i = 0; i < carList.indexOf(this); i++) {
                 isCarAvailable = carList.get(i).isAvailable();
-            }
-            if (isCarAvailable) {
-                return "Available";
+                if (isCarAvailable) {
+                    return "Available";
                 } else {
-                return "Unavailable";
+                    return "Unavailable";
+                }
             }
-            
+            return "";
         }
         /* carAvailability = carList.get(0).isIsAvailable();
         if(carAvailability){
