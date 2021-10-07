@@ -123,8 +123,8 @@
                 <Column editable="false" title="Brand" type="java.lang.Object"/>
                 <Column editable="false" title="Model" type="java.lang.Object"/>
                 <Column editable="false" title="Serial No" type="java.lang.Object"/>
-                <Column editable="false" title="Max Seats" type="java.lang.Object"/>
                 <Column editable="false" title="Min Seats" type="java.lang.Object"/>
+                <Column editable="false" title="Max Seats" type="java.lang.Object"/>
                 <Column editable="false" title="Location" type="java.lang.Object"/>
                 <Column editable="false" title="Year" type="java.lang.Object"/>
                 <Column editable="false" title="Available" type="java.lang.Object"/>

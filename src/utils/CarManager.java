@@ -44,6 +44,8 @@ public class CarManager {
         carList.add(car9);
         carList.add(car10);
         carList.add(car11);
+        carList.add(car12);
+        carList.add(car13);
     }
     
     public static CarManager getCarList() {

@@ -57,7 +57,6 @@ public class AdvancedSearch extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        minInput = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         maxInput = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -68,8 +67,8 @@ public class AdvancedSearch extends javax.swing.JFrame {
         modelInput = new javax.swing.JTextField();
         modelSearch = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        serialInput1 = new javax.swing.JTextField();
         certifiedCar = new javax.swing.JComboBox<>();
+        minSeatsInputhuehue = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +90,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Brand", "Model", "Serial No", "Max Seats", "Min Seats", "Location", "Year", "Available", "Certificate"
+                "Brand", "Model", "Serial No", "Min Seats", "Max Seats", "Location", "Year", "Available", "Certificate"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -156,7 +155,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
         jLabel6.setText("Maintenance Certificate");
 
         certifiedCar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        certifiedCar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Certified", "Not certified" }));
+        certifiedCar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Certified", "Uncertified" }));
         certifiedCar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 certifiedCarActionPerformed(evt);
@@ -176,21 +175,20 @@ public class AdvancedSearch extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1091, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(148, 148, 148)
-                                .addComponent(jLabel6))
-                            .addComponent(serialInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2)
+                        .addGap(148, 148, 148)
+                        .addComponent(jLabel6)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(minInput, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(maxInput, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(maxInput, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(minSeatsInputhuehue)
+                                        .addGap(4, 4, 4)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(144, 144, 144)
@@ -234,9 +232,8 @@ public class AdvancedSearch extends javax.swing.JFrame {
                         .addComponent(serialSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(minInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(serialInput1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(certifiedCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(certifiedCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(minSeatsInputhuehue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -266,7 +263,10 @@ public class AdvancedSearch extends javax.swing.JFrame {
         int minCount;
         int maxCount;
         
-        minCount = Integer.parseInt(minInput.getText());
+//        System.out.println("MIN HUEHUE" + minSeatsInputhuehue.getText());
+//        System.out.println("HUEHUE" + maxInput.getText());
+        
+        minCount = Integer.parseInt(minSeatsInputhuehue.getText());
         maxCount = Integer.parseInt(maxInput.getText());
         
          for(CarProperties car: carList){
@@ -283,12 +283,12 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-            row[7] = "Available";//setAvailable();
-            row[8] = "Certified";//setCertificate();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -316,8 +316,8 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[4] = car.getCarMinSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-            row[7] = "Available";//setAvailable();
-            row[8] = "Certified";//setCertificate();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
         }
     }//GEN-LAST:event_serialSearchActionPerformed
@@ -345,15 +345,15 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[4] = car.getCarMinSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-            row[7] = "Available";//setAvailable();
-            row[8] = "Certified";//setCertificate();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
         }
     }//GEN-LAST:event_modelSearchActionPerformed
 
     private void certifiedCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_certifiedCarActionPerformed
-        List<CarProperties> modelList = new ArrayList<CarProperties>();
-        modelList = searchModel(carList);
+        List<CarProperties> certificateList = new ArrayList<CarProperties>();
+        certificateList = findCertificate(carList);
     }//GEN-LAST:event_certifiedCarActionPerformed
 
     /**
@@ -391,37 +391,54 @@ public class AdvancedSearch extends javax.swing.JFrame {
         });
     }
 
-    private List<CarProperties> searchModel(List<CarProperties> carList) {
+    private List<CarProperties> findCertificate(List<CarProperties> carList) {
         List<CarProperties> certified = new ArrayList<CarProperties>();
         String modelString = "";
         String searchString = "";
         modelString = String.valueOf(certifiedCar.getItemAt(certifiedCar.getSelectedIndex()));
         searchString = certifiedCar.getItemAt(certifiedCar.getSelectedIndex());
-        for (CarProperties car : carList) {
-            if (!modelString.equals("All")) {
-                if (car.isCarMaintenanceCertificate() && modelString.equals("Certified")) {
-                    if (car.getBrandName().equals(searchString)) {
-                        certified.add(car);
-                    } else {
-                        certified.add(car);
-                    }
+        if (modelString.equals("All")) {
+            for (CarProperties car : carList) {
+                certified.add(car);
+            }
+        } else if (modelString.equals("Certified")) {
+            for (CarProperties car : carList) {
+                if (car.isCarMaintenanceCertificate()) {
+                    certified.add(car);
+                }
+            }
+        } else if (modelString.equals("Uncertified")) {
+            for (CarProperties car : carList) {
+                if (!car.isCarMaintenanceCertificate()) {
+                    certified.add(car);
                 }
             }
         }
-        for (CarProperties car : carList) {
-            if (modelString.equals("All")) {
-                certified.add(car);
-            }
-        }
-        for (CarProperties car : carList) {
-            if (modelString.equals("Uncertified") && !car.isCarMaintenanceCertificate()) {
-                if (car.getBrandName().equals(searchString)) {
-                        certified.add(car);
-                    } else {
-                        certified.add(car);
-                    }
-            }
-        }
+//        for (CarProperties car : carList) {
+//            if (!modelString.equals("All")) {
+//                if (car.isCarMaintenanceCertificate() && modelString.equals("Certified")) {
+//                    if (car.getBrandName().equals(searchString)) {
+//                        certified.add(car);
+//                    } else {
+//                        certified.add(car);
+//                    }
+//                }
+//            }
+//        }
+//        for (CarProperties car : carList) {
+//            if (modelString.equals("All")) {
+//                certified.add(car);
+//            }
+//        }
+//        for (CarProperties car : carList) {
+//            if (modelString.equals("Uncertified") && !car.isCarMaintenanceCertificate()) {
+//                if (car.getBrandName().equals(searchString)) {
+//                        certified.add(car);
+//                    } else {
+//                        certified.add(car);
+//                    }
+//            }
+//        }
         DefaultTableModel dtm = (DefaultTableModel) advancedSearchTable.getModel();
         dtm.setRowCount(0);
         for (CarProperties car : certified) {
@@ -433,7 +450,8 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[4] = car.getCarMinSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
         }
         return certified;
@@ -491,8 +509,8 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[4] = car.getCarMinSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-            row[7] = "Available";//setAvailable();
-            row[8] = "Certified";//setCertificate();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
         }
     }
@@ -510,11 +528,10 @@ public class AdvancedSearch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField maxInput;
-    private javax.swing.JTextField minInput;
+    private javax.swing.JTextField minSeatsInputhuehue;
     private javax.swing.JTextField modelInput;
     private javax.swing.JButton modelSearch;
     private javax.swing.JTextField serialInput;
-    private javax.swing.JTextField serialInput1;
     private javax.swing.JButton serialSearch;
     // End of variables declaration//GEN-END:variables
 }

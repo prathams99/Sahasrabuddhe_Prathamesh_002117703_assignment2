@@ -131,6 +131,11 @@ public class CreateCar extends javax.swing.JFrame {
 
         availableNo.setForeground(new java.awt.Color(255, 255, 255));
         availableNo.setText("No");
+        availableNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableNoActionPerformed(evt);
+            }
+        });
 
         maintenanceYes.setForeground(new java.awt.Color(255, 255, 255));
         maintenanceYes.setText("Yes");
@@ -142,6 +147,11 @@ public class CreateCar extends javax.swing.JFrame {
 
         maintenanceNo.setForeground(new java.awt.Color(255, 255, 255));
         maintenanceNo.setText("No");
+        maintenanceNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maintenanceNoActionPerformed(evt);
+            }
+        });
 
         cityInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "New York", "New Jerey", "California" }));
         cityInput.addActionListener(new java.awt.event.ActionListener() {
@@ -191,25 +201,26 @@ public class CreateCar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cityInput, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cityInput, javax.swing.GroupLayout.Alignment.LEADING, 0, 349, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(availableYes)
-                                .addGap(18, 246, Short.MAX_VALUE)
-                                .addComponent(availableNo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(597, 597, 597))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(brandNameInput)
-                            .addComponent(modelNameInput)
-                            .addComponent(carYearInput)
-                            .addComponent(serialNumberInput)
-                            .addComponent(minSeatsInput)
-                            .addComponent(maxSeatsInput)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(maintenanceYes)
-                                .addGap(18, 38, Short.MAX_VALUE)
-                                .addComponent(maintenanceNo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(availableNo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(brandNameInput)
+                                .addComponent(modelNameInput)
+                                .addComponent(carYearInput)
+                                .addComponent(serialNumberInput)
+                                .addComponent(minSeatsInput)
+                                .addComponent(maxSeatsInput)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(maintenanceYes)
+                                    .addGap(18, 38, Short.MAX_VALUE)
+                                    .addComponent(maintenanceNo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(437, 437, 437)
@@ -270,11 +281,11 @@ public class CreateCar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void availableYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableYesActionPerformed
-        // TODO add your handling code here:
+        availableNo.setSelected(false);
     }//GEN-LAST:event_availableYesActionPerformed
 
     private void maintenanceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceYesActionPerformed
-        // TODO add your handling code here:
+        maintenanceNo.setSelected(false);
     }//GEN-LAST:event_maintenanceYesActionPerformed
 
     private void cityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityInputActionPerformed
@@ -310,6 +321,14 @@ public class CreateCar extends javax.swing.JFrame {
         DashboardPanel dashboardPanel = new DashboardPanel(carList);
         dashboardPanel.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void availableNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableNoActionPerformed
+        availableYes.setSelected(false);
+    }//GEN-LAST:event_availableNoActionPerformed
+
+    private void maintenanceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceNoActionPerformed
+        maintenanceYes.setSelected(false);
+    }//GEN-LAST:event_maintenanceNoActionPerformed
 
     /**
      * @param args the command line arguments

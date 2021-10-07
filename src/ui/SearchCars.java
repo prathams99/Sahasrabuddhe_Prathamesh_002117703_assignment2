@@ -37,14 +37,17 @@ public class SearchCars extends javax.swing.JFrame {
         initComponents();
         initImage();
         fillData();
-//        for(int index = 0; index < carList.size(); index++){
-//                getBrand.add(carList.get(index).getBrandName());
-//        }
+        for(int index = 0; index < carList.size(); index++){
+                getBrand.add(carList.get(index).getBrandName());
+        }
 //        Set<String> set = new HashSet<>(getBrand);
 //        getBrand.clear();
 //        getBrand.addAll(set);
 //        System.out.println(set);
+//        String hardik = set.toString();
+//        hardik = hardik.replaceAll(",", "\",");
 //        String joined = String.join(",", set.toString());
+//        System.out.println(hardik);
 //        List.of(joined);
 //        String hueheu = String.valueOf(List.of(joined));
 //        System.out.println(hueheu + "HUEHEU");
@@ -357,8 +360,8 @@ public class SearchCars extends javax.swing.JFrame {
             row[4] = car.getCarMinSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-            row[7] = "Available";//setAvailable();
-            row[8] = "Certified";//setCertificate();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
         }
     }
@@ -396,8 +399,8 @@ public class SearchCars extends javax.swing.JFrame {
             row[4] = car.getCarMinSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-
-            
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
         }
         return yearList;
@@ -411,7 +414,7 @@ public class SearchCars extends javax.swing.JFrame {
         searchString = modelSearch.getItemAt(modelSearch.getSelectedIndex());
         for(CarProperties car: carList){
             if(!modelString.equals("All")){
-            if (car.getBrandName() == String.valueOf(modelString)){
+            if (car.getBrandName().equals(String.valueOf(modelString))){
                 if (car.getBrandName().equals(searchString)){
                     modelFound.add(car);
                 }else{

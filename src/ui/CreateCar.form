@@ -46,28 +46,30 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="cityInput" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cityInput" alignment="0" pref="349" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                               <Component id="availableYes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" pref="246" max="32767" attributes="0"/>
-                              <Component id="availableNo" min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="597" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="brandNameInput" max="32767" attributes="0"/>
-                          <Component id="modelNameInput" alignment="0" max="32767" attributes="0"/>
-                          <Component id="carYearInput" alignment="0" max="32767" attributes="0"/>
-                          <Component id="serialNumberInput" alignment="0" max="32767" attributes="0"/>
-                          <Component id="minSeatsInput" alignment="0" max="32767" attributes="0"/>
-                          <Component id="maxSeatsInput" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="maintenanceYes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" pref="38" max="32767" attributes="0"/>
-                              <Component id="maintenanceNo" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="availableNo" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="brandNameInput" max="32767" attributes="0"/>
+                              <Component id="modelNameInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="carYearInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="serialNumberInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="minSeatsInput" alignment="0" max="32767" attributes="0"/>
+                              <Component id="maxSeatsInput" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="maintenanceYes" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" pref="38" max="32767" attributes="0"/>
+                                  <Component id="maintenanceNo" min="-2" pref="47" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -291,6 +293,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="availableNoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="maintenanceYes">
       <Properties>
@@ -310,6 +315,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maintenanceNoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cityInput">
       <Properties>

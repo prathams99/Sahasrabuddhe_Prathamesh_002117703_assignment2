@@ -7,6 +7,7 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +23,8 @@ public class ManageCar extends javax.swing.JFrame {
 
     private CarManager carManager;
     private List<CarProperties> carList;
+    List<CarProperties> addCar = new ArrayList<CarProperties>();
+    private int indexGlobal = -1;
     
     /**
      * Creates new form ViewCar
@@ -31,7 +34,6 @@ public class ManageCar extends javax.swing.JFrame {
         this.carList = carList;
         initComponents();
         initImage();
-        fillData();
     }
     
     /**
@@ -67,6 +69,12 @@ public class ManageCar extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         updateNewCar = new javax.swing.JButton();
+        availableYes = new javax.swing.JCheckBox();
+        availableNo = new javax.swing.JCheckBox();
+        maintenanceYes = new javax.swing.JCheckBox();
+        maintenanceNo = new javax.swing.JCheckBox();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -129,6 +137,51 @@ public class ManageCar extends javax.swing.JFrame {
         jLabel10.setText("City");
 
         updateNewCar.setText("Update");
+        updateNewCar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateNewCarActionPerformed(evt);
+            }
+        });
+
+        availableYes.setForeground(new java.awt.Color(255, 255, 255));
+        availableYes.setText("Yes");
+        availableYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableYesActionPerformed(evt);
+            }
+        });
+
+        availableNo.setForeground(new java.awt.Color(255, 255, 255));
+        availableNo.setText("No");
+        availableNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                availableNoActionPerformed(evt);
+            }
+        });
+
+        maintenanceYes.setForeground(new java.awt.Color(255, 255, 255));
+        maintenanceYes.setText("Yes");
+        maintenanceYes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maintenanceYesActionPerformed(evt);
+            }
+        });
+
+        maintenanceNo.setForeground(new java.awt.Color(255, 255, 255));
+        maintenanceNo.setText("No");
+        maintenanceNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maintenanceNoActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Available");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Maintenance");
 
         javax.swing.GroupLayout panelUpdateCarLayout = new javax.swing.GroupLayout(panelUpdateCar);
         panelUpdateCar.setLayout(panelUpdateCarLayout);
@@ -140,24 +193,34 @@ public class ManageCar extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelUpdateCarLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
+                        .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(100, 100, 100)
-                        .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(newModel, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                            .addComponent(newYear, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newSerial, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newMin, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newMax, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newCity, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newBrand))
-                        .addGap(0, 139, Short.MAX_VALUE)))
+                        .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelUpdateCarLayout.createSequentialGroup()
+                                .addComponent(maintenanceYes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(maintenanceNo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateCarLayout.createSequentialGroup()
+                                .addComponent(availableYes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(availableNo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newMin, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(newMax)
+                            .addComponent(newCity)
+                            .addComponent(newBrand)
+                            .addComponent(newModel)
+                            .addComponent(newYear)
+                            .addComponent(newSerial))
+                        .addGap(0, 112, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateCarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -196,12 +259,26 @@ public class ManageCar extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(newMax))
                 .addGap(18, 18, 18)
-                .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(newCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(updateNewCar)
-                .addContainerGap())
+                .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelUpdateCarLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateNewCar)
+                        .addContainerGap())
+                    .addGroup(panelUpdateCarLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(availableYes)
+                            .addComponent(availableNo)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(maintenanceYes)
+                            .addComponent(maintenanceNo)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                        .addContainerGap(186, Short.MAX_VALUE))))
         );
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 30)); // NOI18N
@@ -223,7 +300,7 @@ public class ManageCar extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Select Car");
 
-        carSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elantra", "Tucson", "Jetta", "City", "Civic", "CR-V", "Camry", "Corolla", "Model3", "Model S", "Spark", "Impala", "i8" }));
+        carSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elantra", "Tucson", "Jetta", "City", "Civic", "CR-V", "Camry", "Corolla", "Model 3", "Model S", "Spark", "Impala", "i8" }));
 
         updateCar.setText("Update");
         updateCar.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +332,7 @@ public class ManageCar extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelUpdateCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(312, 312, 312))
+                .addGap(311, 311, 311))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,9 +346,9 @@ public class ManageCar extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(carSelect, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(updateCar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addGap(28, 28, 28)
                 .addComponent(panelUpdateCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(145, 145, 145))
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -290,7 +367,7 @@ public class ManageCar extends javax.swing.JFrame {
         modelName = String.valueOf(carSelect.getItemAt(carSelect.getSelectedIndex()));
         searchString = carSelect.getItemAt(carSelect.getSelectedIndex());
         for (CarProperties car : carList) {
-            if (car.getModelName() == modelName) {
+            if (car.getModelName().equals(modelName)) {
                 if (car.getBrandName().equals(searchString)) {
                     modelNamesTemp.add(car);
                 } else {
@@ -298,11 +375,11 @@ public class ManageCar extends javax.swing.JFrame {
                 }
             }
         }
+        indexGlobal = carList.indexOf(modelNamesTemp.get(0));
         System.out.println(modelName);
-        System.out.println(CarManager.getCarList().carList.indexOf(modelName));
+        System.out.println(indexGlobal + "INDEX");
         panelUpdateCar.setVisible(true);
         
-        List<CarProperties> addCar = new ArrayList<CarProperties>();
         addCar = CarManager.searchModel(modelName);
         newModel.setText(modelName);
         newBrand.setText(addCar.get(0).getBrandName());
@@ -311,21 +388,67 @@ public class ManageCar extends javax.swing.JFrame {
         newMin.setText(String.valueOf(addCar.get(0).getCarMinSeats()));
         newMax.setText(String.valueOf(addCar.get(0).getCarMaxSeats()));
         newSerial.setText(String.valueOf(addCar.get(0).getCarSerialNumber()));
-        
+        if (addCar.get(0).isAvailable()) {
+            availableYes.setSelected(true);
+            availableNo.setSelected(false);
+        } else {
+            availableYes.setSelected(false);
+            availableNo.setSelected(true);
+        }
+        if (addCar.get(0).isCarMaintenanceCertificate()) {
+            maintenanceYes.setSelected(true);
+            maintenanceNo.setSelected(false);
+        } else {
+            maintenanceYes.setSelected(false);
+            maintenanceNo.setSelected(true);
+        }
     }//GEN-LAST:event_updateCarActionPerformed
 
     private void newMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newMinActionPerformed
 
-    private void newBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBrandActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newBrandActionPerformed
-
     private void newModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newModelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newModelActionPerformed
 
+    private void updateNewCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateNewCarActionPerformed
+        carList.get(indexGlobal).setBrandName(newBrand.getText());
+        carList.get(indexGlobal).setModelName(newModel.getText());
+        carList.get(indexGlobal).setCarYear(Integer.parseInt(newYear.getText()));
+        carList.get(indexGlobal).setCarSerialNumber(Integer.parseInt(newSerial.getText()));
+        carList.get(indexGlobal).setCarMinSeats(Integer.parseInt(newMin.getText()));
+        carList.get(indexGlobal).setCarMaxSeats(Integer.parseInt(newMax.getText()));
+        carList.get(indexGlobal).setCarCity(newCity.getText());
+        carList.get(indexGlobal).setIsAvailable(availableYes.isSelected());
+        carList.get(indexGlobal).setCarMaintenanceCertificate(maintenanceYes.isSelected());
+        
+        JOptionPane.showMessageDialog(this,"Car Details Successfully updated!");
+        super.dispose();
+        DashboardPanel dashboardPanel = new DashboardPanel(carList);
+        dashboardPanel.setVisible(true);
+    }//GEN-LAST:event_updateNewCarActionPerformed
+
+    private void newBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBrandActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newBrandActionPerformed
+
+    private void availableYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableYesActionPerformed
+        availableNo.setSelected(false);
+    }//GEN-LAST:event_availableYesActionPerformed
+
+    private void availableNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableNoActionPerformed
+        availableYes.setSelected(false);
+    }//GEN-LAST:event_availableNoActionPerformed
+
+    private void maintenanceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceYesActionPerformed
+        maintenanceNo.setSelected(false);
+    }//GEN-LAST:event_maintenanceYesActionPerformed
+
+    private void maintenanceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceNoActionPerformed
+        maintenanceYes.setSelected(false);
+    }//GEN-LAST:event_maintenanceNoActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -389,16 +512,16 @@ public class ManageCar extends javax.swing.JFrame {
         );        
         panelUpdateCar.setVisible(false);  
     }
-    
-    private void fillData() {
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox availableNo;
+    private javax.swing.JCheckBox availableYes;
     private javax.swing.JButton backButton;
     private javax.swing.JComboBox<String> carSelect;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -407,6 +530,8 @@ public class ManageCar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JCheckBox maintenanceNo;
+    private javax.swing.JCheckBox maintenanceYes;
     private javax.swing.JTextField newBrand;
     private javax.swing.JTextField newCity;
     private javax.swing.JTextField newMax;

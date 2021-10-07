@@ -104,6 +104,7 @@ public class DashboardPanel extends javax.swing.JFrame {
         buttonCreate.setBackground(new java.awt.Color(51, 51, 51));
         buttonCreate.setForeground(new java.awt.Color(255, 255, 255));
         buttonCreate.setText("Create Car");
+        buttonCreate.setBorder(null);
         buttonCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCreateActionPerformed(evt);
@@ -176,8 +177,8 @@ public class DashboardPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonViewActionPerformed
 
     private void buttonManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonManageActionPerformed
-        ManageCar manageCar = new ManageCar(carList);
-        manageCar.setVisible(true);
+        AdminPanel admin = new AdminPanel(carList, false);
+        admin.setVisible(true);
         super.dispose();
     }//GEN-LAST:event_buttonManageActionPerformed
 
@@ -188,7 +189,7 @@ public class DashboardPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void buttonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreateActionPerformed
-        CreateCar createCar = new CreateCar(carList);
+        AdminPanel createCar = new AdminPanel(carList, true);
         createCar.setVisible(true);
         super.dispose();
     }//GEN-LAST:event_buttonCreateActionPerformed

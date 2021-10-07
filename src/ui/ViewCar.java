@@ -95,7 +95,7 @@ public class ViewCar extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Brand", "Model", "Serial No", "Max Seats", "Min Seats", "Location", "Year", "Available", "Certificate"
+                "Brand", "Model", "Serial No", "Min Seats", "Max Seats", "Location", "Year", "Available", "Certificate"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -280,14 +280,13 @@ public class ViewCar extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-            row[7] = setAvailable();
-            row[8] = setCertificate();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
             dtm.addRow(row);
-            System.out.println("HUEHUE" + setAvailable());
         }
         
         // Find the number of available cars as well as booked cars
@@ -301,61 +300,6 @@ public class ViewCar extends javax.swing.JFrame {
         availableText.setText(String.valueOf(availableCars));
         bookedText.setText(String.valueOf(bookedCars));
     }
-        
-    private String setCertificate() {
-        String text = "";
-        for (int i = 0; i < carList.size(); i++) {
-            boolean isCertified = carList.get(i).isAvailable();
-            if (isCertified) {
-                text = "Certified";
-            } else {
-                text = "Not certified";
-            }
-        }
-        return text;
-    }
-    
-        private String setAvailable() {
-            for (i = 0; i < carList.indexOf(this); i++) {
-                isCarAvailable = carList.get(i).isAvailable();
-                if (isCarAvailable) {
-                    return "Available";
-                } else {
-                    return "Unavailable";
-                }
-            }
-            return "";
-        }
-        /* carAvailability = carList.get(0).isIsAvailable();
-        if(carAvailability){
-            txtAvailStatus.setText("Available");
-        }else{
-            txtAvailStatus.setText("Not Available");
-        }
-        txtBrand.setText(carList.get(0).getBrand());
-        txtManYear.setText(String.valueOf(carList.get(0).getManufactured_year()));
-        txtMinSeats.setText(String.valueOf(carList.get(0).getMin_seats()));
-        txtMaxSeats.setText(String.valueOf(carList.get(0).getMax_seats()));
-        txtSerialNum.setText(String.valueOf(carList.get(0).getSerial_num()));
-        txtModelNum.setText(String.valueOf(carList.get(0).getModel_num()));
-        txtCity.setText(String.valueOf(carList.get(0).getAvailble_city()));
-        
-        maintainanceCertificate = carList.get(0).isMaintenance_certificate();
-        if(maintainanceCertificate){
-            txtCertificate.setText("Cerificate Issued");
-        }else{
-            txtCertificate.setText("Cerificate Not Issued");
-        }
-        
-        for(int index = 0; index < carList.size(); index++){
-            if(carList.get(index).isAvailable()){
-                car_count++;
-            }else{
-                not_car_count++;
-            }
-        }
-        txtAvailCount.setText(String.valueOf(car_count));
-        txtAvailCount1.setText(String.valueOf(not_car_count)); */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton availableText;
