@@ -22,9 +22,10 @@ public class AdminPanel extends javax.swing.JFrame {
     private String username = "admin";
     private String password = "admin123";
     private boolean create = false;
-    
+
     /**
      * Creates new form CreateCar
+     *
      * @param carList
      * @param isCreate
      */
@@ -35,7 +36,7 @@ public class AdminPanel extends javax.swing.JFrame {
         initComponents();
         initImage();
     }
-    
+
     /**
      * Creates new form AdminPanel
      */
@@ -197,49 +198,49 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void initImage() {
         ImagePanel jPanel1 = new ImagePanel("src/assets/locked-1.png");
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
-    
+
     private void login() {
         if (username.equals(adminUsername.getText()) && password.equals(adminPassword.getText())) {
             super.dispose();
             if (create) {
                 CreateCar createCar = new CreateCar(carList);
                 createCar.setVisible(true);
-                JOptionPane.showMessageDialog(this,"Welcome!");
+                JOptionPane.showMessageDialog(this, "Welcome!");
             } else {
-            ManageCar manageCar = new ManageCar(carList);
-            manageCar.setVisible(true);
-            JOptionPane.showMessageDialog(this,"Welcome!");
+                ManageCar manageCar = new ManageCar(carList);
+                manageCar.setVisible(true);
+                JOptionPane.showMessageDialog(this, "Welcome!");
             }
         } else {
-            JOptionPane.showMessageDialog(this,"Wrong Username or Password!!!");
+            JOptionPane.showMessageDialog(this, "Wrong Username or Password!!!");
         }
     }
 

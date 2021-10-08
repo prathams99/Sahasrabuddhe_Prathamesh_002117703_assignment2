@@ -31,7 +31,6 @@ public class ViewCar extends javax.swing.JFrame {
     private int bookedCars = 0;
     private int availableCars = 0;
 
-    
     /**
      * Creates new form ViewCar
      */
@@ -42,7 +41,7 @@ public class ViewCar extends javax.swing.JFrame {
         initImage();
         fillData();
     }
-    
+
     /**
      * Creates new form ViewCar
      */
@@ -404,52 +403,52 @@ public class ViewCar extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void initImage() {
         ImagePanel jPanel1 = new ImagePanel("src/assets/view-taxi.jpg");
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
-    
+
     private void fillData() {
         DefaultTableModel dtm = (DefaultTableModel) carTable.getModel();
         dtm.setRowCount(0);
-        
+
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         carTable.setDefaultRenderer(String.class, centerRenderer);
-        
+
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) carTable.getTableHeader().getDefaultRenderer();
         renderer.setHorizontalAlignment(0);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm");
-        
-        for(int x=0; x < carTable.getColumnCount(); x++){
-         carTable.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+
+        for (int x = 0; x < carTable.getColumnCount(); x++) {
+            carTable.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
         }
-        
-        for(CarProperties car : carList){
+
+        for (CarProperties car : carList) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -463,9 +462,9 @@ public class ViewCar extends javax.swing.JFrame {
             row[9] = dateFormat.format(car.getTimeStamp());
             dtm.addRow(row);
         }
-        
+
         // Find the number of available cars as well as booked cars
-        for (i = 0; i < carList.size() ; i++) {
+        for (i = 0; i < carList.size(); i++) {
             if (carList.get(i).isAvailable()) {
                 availableCars++;
             } else {
@@ -474,14 +473,14 @@ public class ViewCar extends javax.swing.JFrame {
         }
         availableText.setText(String.valueOf(availableCars));
         bookedText.setText(String.valueOf(bookedCars));
-        
+
         // First Car
         CarProperties firstAvailableCar = null;
         for (CarProperties car : carList) {
             if (car.isAvailable()) {
                 firstAvailableCar = car;
                 break;
-                
+
             }
         }
         if (firstAvailableCar != null) {

@@ -25,7 +25,7 @@ public class CreateCar extends javax.swing.JFrame {
     private CarConfiguration carManager;
     private CarProperties cp = new CarProperties();
     private List<CarProperties> carList;
-    
+
     /**
      * Creates new form CreateCar
      */
@@ -35,7 +35,7 @@ public class CreateCar extends javax.swing.JFrame {
         initComponents();
         initImage();
     }
-    
+
     /**
      * Creates new form CreateCar
      */
@@ -299,7 +299,7 @@ public class CreateCar extends javax.swing.JFrame {
     private void submitCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitCarActionPerformed
         validateFields();
     }//GEN-LAST:event_submitCarActionPerformed
-    
+
     private void validateFields() {
         if (!cp.validateName(brandNameInput.getText())) {
             JOptionPane.showMessageDialog(this, "Please enter a valid brand name.");
@@ -347,15 +347,15 @@ public class CreateCar extends javax.swing.JFrame {
         int carMaxSeats = Integer.parseInt(maxSeatsInput.getText());
         boolean isAvailable = availableYes.isSelected();
         boolean carMaintenanceCertificate = maintenanceYes.isSelected();
-        
+
         LocalDateTime now = LocalDateTime.now();
         Date currentTime = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
         CarProperties carProperties = new CarProperties(brandName, modelName, carCity, carSerialNumber, carMaxSeats, carMinSeats, carMaintenanceCertificate, carYear, isAvailable, currentTime);
         carList.add(carProperties);
     }
-    
+
     private void openNextPanel() {
-        JOptionPane.showMessageDialog(this,"Car Successfully added!");
+        JOptionPane.showMessageDialog(this, "Car Successfully added!");
         super.dispose();
         DashboardPanel dashboardPanel = new DashboardPanel(carList);
         dashboardPanel.setVisible(true);
@@ -408,34 +408,34 @@ public class CreateCar extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void initImage() {
         ImagePanel jPanel1 = new ImagePanel("src/assets/black-car.jpeg");
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        
+
         carYearInput.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                 if (carYearInput.getText().length() >= 4) // limit textfield to 4 characters
@@ -444,9 +444,8 @@ public class CreateCar extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         // Dropdown list
-        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox availableNo;

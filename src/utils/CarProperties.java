@@ -13,7 +13,7 @@ import java.util.Date;
  * @author prath
  */
 public class CarProperties {
-    
+
     private String brandName;
     private String modelName;
     private String carCity;
@@ -25,7 +25,7 @@ public class CarProperties {
     private boolean isAvailable;
     private Date carDate;
     private Date timeStamp;
-    
+
     // Input validators
     private final String nameRegex = "^[a-zA-Z]+$";
     private final String numberRegex = "^[0-9]*$";
@@ -39,22 +39,22 @@ public class CarProperties {
         this.timeStamp = timeStamp;
     }
 
-    public CarProperties(){
+    public CarProperties() {
         this.timeStamp = new Date();
     }
-    
+
     public boolean validateName(String inputName) {
         return inputName.matches(nameRegex);
     }
-    
+
     public boolean validateNumber(String numberInput) {
         return numberInput.matches(numberRegex);
     }
-    
+
     public boolean validateNameNumber(String nameNumberInput) {
         return nameNumberInput.matches(nameNumberRegex);
     }
-    
+
     public CarProperties(String brandName, String modelName, String carCity, int carSerialNumber, int carMaxSeats, int carMinSeats, boolean carMaintenanceCertificate, int carYear, boolean isAvailable, Date timeStamp) {
         this.brandName = brandName;
         this.modelName = modelName;
@@ -148,10 +148,10 @@ public class CarProperties {
     public void setCarDate(Date carDate) {
         this.carDate = carDate;
     }
-    
+
     @Override
-    public String toString(){
-       return this.getCarSerialNumber()+" "+this.getBrandName()+" "+this.getModelName()+" "+this.getCarYear()+
-               " "+this.getCarMinSeats()+" "+this.getCarMaxSeats()+" "+this.getCarCity()+" "+isAvailable()+" "+isCarMaintenanceCertificate();
+    public String toString() {
+        return this.getCarSerialNumber() + " " + this.getBrandName() + " " + this.getModelName() + " " + this.getCarYear()
+                + " " + this.getCarMinSeats() + " " + this.getCarMaxSeats() + " " + this.getCarCity() + " " + isAvailable() + " " + isCarMaintenanceCertificate();
     }
 }

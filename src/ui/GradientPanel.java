@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
  * @author prath
  */
 public class GradientPanel extends JPanel {
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

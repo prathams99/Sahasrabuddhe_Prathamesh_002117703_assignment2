@@ -24,7 +24,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
     private CarConfiguration carManager;
     private List<CarProperties> carList;
     private CarProperties cp = new CarProperties();
-    
+
     /**
      * Creates new form ViewCar
      */
@@ -35,7 +35,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
         initImage();
         fillData();
     }
-    
+
     /**
      * Creates new form AdvancedSearch
      */
@@ -289,27 +289,27 @@ public class AdvancedSearch extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seats cannot be empty.");
             return;
         }
-        searchValidatedSeats();       
+        searchValidatedSeats();
     }
-    
+
     private void searchValidatedSeats() {
         List<CarProperties> tempList = new ArrayList<CarProperties>();
         int minCount;
         int maxCount;
-        
+
         minCount = Integer.parseInt(minSeatsInput.getText());
         maxCount = Integer.parseInt(maxInput.getText());
-        
-        for(CarProperties car: carList){
-            if(car.getCarMinSeats() >= minCount  && car.getCarMaxSeats() <= maxCount){
+
+        for (CarProperties car : carList) {
+            if (car.getCarMinSeats() >= minCount && car.getCarMaxSeats() <= maxCount) {
                 tempList.add(car);
             }
-            
+
         }
-        
+
         DefaultTableModel dtm = (DefaultTableModel) advancedSearchTable.getModel();
-        dtm.setRowCount(0); 
-        for(CarProperties car : tempList){
+        dtm.setRowCount(0);
+        for (CarProperties car : tempList) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -323,7 +323,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
             dtm.addRow(row);
         }
     }
-    
+
     private void serialSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serialSearchActionPerformed
         validateSerial();
     }//GEN-LAST:event_serialSearchActionPerformed
@@ -335,21 +335,21 @@ public class AdvancedSearch extends javax.swing.JFrame {
         }
         searchValidatedSerial();
     }
-    
+
     private void searchValidatedSerial() {
         List<CarProperties> tempSerial = new ArrayList<CarProperties>();
         int serialNumber;
         serialNumber = Integer.parseInt(serialInput.getText());
-        
-         for(CarProperties car: carList){
-            if(serialNumber == car.getCarSerialNumber()){
+
+        for (CarProperties car : carList) {
+            if (serialNumber == car.getCarSerialNumber()) {
                 tempSerial.add(car);
             }
         }
-        
+
         DefaultTableModel dtm = (DefaultTableModel) advancedSearchTable.getModel();
-        dtm.setRowCount(0); 
-        for(CarProperties car : tempSerial) {
+        dtm.setRowCount(0);
+        for (CarProperties car : tempSerial) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -362,36 +362,36 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
-        
+
     }
-    
+
     private void modelSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelSearchActionPerformed
         validateModel();
     }//GEN-LAST:event_modelSearchActionPerformed
 
     private void validateModel() {
-        if(!cp.validateNameNumber(modelInput.getText())) {
+        if (!cp.validateNameNumber(modelInput.getText())) {
             JOptionPane.showMessageDialog(this, "Please enter a valid model name.");
             return;
         }
         searchValidatedModel();
     }
-    
+
     private void searchValidatedModel() {
         List<CarProperties> tempModel = new ArrayList<CarProperties>();
         String modelName;
-        
+
         modelName = modelInput.getText();
-        
-         for(CarProperties car: carList){
-            if(modelName == null ? car.getModelName() == null : modelName.equals(car.getModelName())){
+
+        for (CarProperties car : carList) {
+            if (modelName == null ? car.getModelName() == null : modelName.equals(car.getModelName())) {
                 tempModel.add(car);
             }
         }
-        
+
         DefaultTableModel dtm = (DefaultTableModel) advancedSearchTable.getModel();
-        dtm.setRowCount(0); 
-        for(CarProperties car : tempModel){
+        dtm.setRowCount(0);
+        for (CarProperties car : tempModel) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -405,7 +405,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
             dtm.addRow(row);
         }
     }
-    
+
     private void certifiedCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_certifiedCarActionPerformed
         List<CarProperties> certificateList = new ArrayList<CarProperties>();
         certificateList = findCertificate(carList);
@@ -469,31 +469,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
                 }
             }
         }
-//        for (CarProperties car : carList) {
-//            if (!modelString.equals("All")) {
-//                if (car.isCarMaintenanceCertificate() && modelString.equals("Certified")) {
-//                    if (car.getBrandName().equals(searchString)) {
-//                        certified.add(car);
-//                    } else {
-//                        certified.add(car);
-//                    }
-//                }
-//            }
-//        }
-//        for (CarProperties car : carList) {
-//            if (modelString.equals("All")) {
-//                certified.add(car);
-//            }
-//        }
-//        for (CarProperties car : carList) {
-//            if (modelString.equals("Expired") && !car.isCarMaintenanceCertificate()) {
-//                if (car.getBrandName().equals(searchString)) {
-//                        certified.add(car);
-//                    } else {
-//                        certified.add(car);
-//                    }
-//            }
-//        }
+
         DefaultTableModel dtm = (DefaultTableModel) advancedSearchTable.getModel();
         dtm.setRowCount(0);
         for (CarProperties car : certified) {
@@ -511,51 +487,51 @@ public class AdvancedSearch extends javax.swing.JFrame {
         }
         return certified;
     }
-    
+
     private void initImage() {
         ImagePanel jPanel1 = new ImagePanel("src/assets/search2.jpg");
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
-    
+
     private void fillData() {
         DefaultTableModel dtm = (DefaultTableModel) advancedSearchTable.getModel();
         dtm.setRowCount(0);
-        
+
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         advancedSearchTable.setDefaultRenderer(String.class, centerRenderer);
-        
+
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) advancedSearchTable.getTableHeader().getDefaultRenderer();
         renderer.setHorizontalAlignment(0);
-        
-        for(int x=0; x < advancedSearchTable.getColumnCount(); x++){
-         advancedSearchTable.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+
+        for (int x = 0; x < advancedSearchTable.getColumnCount(); x++) {
+            advancedSearchTable.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
         }
-        
-        for(CarProperties car : carList){
+
+        for (CarProperties car : carList) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -569,7 +545,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
             dtm.addRow(row);
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable advancedSearchTable;
     private javax.swing.JButton backButton;

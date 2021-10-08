@@ -28,7 +28,7 @@ public class SearchCars extends javax.swing.JFrame {
     private List<CarProperties> carList;
     private List<CarProperties> tempCars;
     private List<String> getBrand = new ArrayList<String>();
-    
+
     /**
      * Creates new form ViewCar
      */
@@ -38,11 +38,11 @@ public class SearchCars extends javax.swing.JFrame {
         initComponents();
         initImage();
         fillData();
-        for(int index = 0; index < carList.size(); index++){
-                getBrand.add(carList.get(index).getBrandName());
+        for (int index = 0; index < carList.size(); index++) {
+            getBrand.add(carList.get(index).getBrandName());
         }
     }
-    
+
     /**
      * Creates new form SearchCars
      */
@@ -307,51 +307,51 @@ public class SearchCars extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void initImage() {
         ImagePanel jPanel1 = new ImagePanel("src/assets/advanced-search.jpeg");
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }
-     
+
     private void fillData() {
         DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
         dtm.setRowCount(0);
-        
+
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         searchTable.setDefaultRenderer(String.class, centerRenderer);
-        
+
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) searchTable.getTableHeader().getDefaultRenderer();
         renderer.setHorizontalAlignment(0);
-        
-        for(int x=0; x < searchTable.getColumnCount(); x++){
-         searchTable.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+
+        for (int x = 0; x < searchTable.getColumnCount(); x++) {
+            searchTable.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
         }
-        
-        for(CarProperties car : carList){
+
+        for (CarProperties car : carList) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -365,32 +365,32 @@ public class SearchCars extends javax.swing.JFrame {
             dtm.addRow(row);
         }
     }
-    
+
     private List<CarProperties> searchYear(List<CarProperties> carList) {
         List<CarProperties> yearList = new ArrayList<CarProperties>();
         String yearString = "";
         String searchString = "";
         yearString = String.valueOf(yearSearch.getItemAt(yearSearch.getSelectedIndex()));
         searchString = yearSearch.getItemAt(yearSearch.getSelectedIndex());
-        for(CarProperties car: carList){
-            if(!yearString.equals("ALL")){
-            if (car.getCarYear() == Integer.parseInt(yearString)){
-                if (car.getBrandName().equals(searchString)){
-                    yearList.add(car);
-                }else{
-                    yearList.add(car);
+        for (CarProperties car : carList) {
+            if (!yearString.equals("ALL")) {
+                if (car.getCarYear() == Integer.parseInt(yearString)) {
+                    if (car.getBrandName().equals(searchString)) {
+                        yearList.add(car);
+                    } else {
+                        yearList.add(car);
+                    }
                 }
             }
+        }
+        for (CarProperties car : carList) {
+            if (yearString.equals("ALL")) {
+                yearList.add(car);
             }
         }
-         for(CarProperties car: carList){
-        if(yearString.equals("ALL")){
-            yearList.add(car);
-         }
-         }
         DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
         dtm.setRowCount(0);
-        for(CarProperties car : yearList){
+        for (CarProperties car : yearList) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -405,73 +405,32 @@ public class SearchCars extends javax.swing.JFrame {
         }
         return yearList;
     }
-    
+
     private List<CarProperties> searchModel(List<CarProperties> carList) {
         List<CarProperties> modelFound = new ArrayList<CarProperties>();
         String modelString = "";
         String searchString = "";
         modelString = String.valueOf(modelSearch.getItemAt(modelSearch.getSelectedIndex()));
         searchString = modelSearch.getItemAt(modelSearch.getSelectedIndex());
-        for(CarProperties car: carList){
-            if(!modelString.equals("ALL")){
-            if (car.getBrandName().equals(String.valueOf(modelString))){
-                if (car.getBrandName().equals(searchString)){
-                    modelFound.add(car);
-                }else{
-                    modelFound.add(car);
+        for (CarProperties car : carList) {
+            if (!modelString.equals("ALL")) {
+                if (car.getBrandName().equals(String.valueOf(modelString))) {
+                    if (car.getBrandName().equals(searchString)) {
+                        modelFound.add(car);
+                    } else {
+                        modelFound.add(car);
+                    }
                 }
             }
+        }
+        for (CarProperties car : carList) {
+            if (modelString.equals("ALL")) {
+                modelFound.add(car);
             }
         }
-         for(CarProperties car: carList){
-        if(modelString.equals("ALL")){
-            modelFound.add(car);
-         }
-         }
         DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
         dtm.setRowCount(0);
-        for(CarProperties car : modelFound){
-            Object[] row = new Object[dtm.getColumnCount()];
-            row[0] = car.getBrandName();
-            row[1] = car.getModelName();
-            row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMinSeats();
-            row[4] = car.getCarMaxSeats();
-            row[5] = car.getCarCity();
-            row[6] = car.getCarYear();
-            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
-            
-            dtm.addRow(row);
-        }
-        return modelFound;
-    }
-    
-    private List<CarProperties> searchCity(List<CarProperties> carList) {
-        List<CarProperties> cityFound = new ArrayList<CarProperties>();
-        String cityName = "";
-        String searchString = "";
-        cityName = String.valueOf(citySearch.getItemAt(citySearch.getSelectedIndex()));
-        searchString = citySearch.getItemAt(citySearch.getSelectedIndex());
-        for(CarProperties car: carList){
-            if(!cityName.equals("ALL")){
-            if (car.getCarCity() == String.valueOf(cityName)){
-                if (car.getCarCity().equals(searchString)){
-                    cityFound.add(car);
-                }else{
-                    cityFound.add(car);
-                }
-            }
-            }
-        }
-        for(CarProperties car: carList){
-            if(cityName.equals("ALL")){
-                cityFound.add(car);
-            }
-         }
-        DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
-        dtm.setRowCount(0);
-        for(CarProperties car : cityFound){
+        for (CarProperties car : modelFound) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -483,12 +442,52 @@ public class SearchCars extends javax.swing.JFrame {
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
             row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
 
-            
+            dtm.addRow(row);
+        }
+        return modelFound;
+    }
+
+    private List<CarProperties> searchCity(List<CarProperties> carList) {
+        List<CarProperties> cityFound = new ArrayList<CarProperties>();
+        String cityName = "";
+        String searchString = "";
+        cityName = String.valueOf(citySearch.getItemAt(citySearch.getSelectedIndex()));
+        searchString = citySearch.getItemAt(citySearch.getSelectedIndex());
+        for (CarProperties car : carList) {
+            if (!cityName.equals("ALL")) {
+                if (car.getCarCity() == String.valueOf(cityName)) {
+                    if (car.getCarCity().equals(searchString)) {
+                        cityFound.add(car);
+                    } else {
+                        cityFound.add(car);
+                    }
+                }
+            }
+        }
+        for (CarProperties car : carList) {
+            if (cityName.equals("ALL")) {
+                cityFound.add(car);
+            }
+        }
+        DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
+        dtm.setRowCount(0);
+        for (CarProperties car : cityFound) {
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0] = car.getBrandName();
+            row[1] = car.getModelName();
+            row[2] = car.getCarSerialNumber();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
+            row[5] = car.getCarCity();
+            row[6] = car.getCarYear();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
+
             dtm.addRow(row);
         }
         return cityFound;
     }
-    
+
     private boolean isItemValid(String city, String year, String brand, CarProperties car) {
         boolean isValid = true;
         if (!city.equals("ALL")) {
@@ -502,25 +501,25 @@ public class SearchCars extends javax.swing.JFrame {
         }
         return isValid;
     }
- 
+
     private List<CarProperties> searchAll(List<CarProperties> carList) {
         List<CarProperties> allFound = new ArrayList<CarProperties>();
         String carCity = "";
         String carYear = "";
         String carBrand = "";
         String searchString = "";
- 
+
         carCity = String.valueOf(citySearch.getItemAt(citySearch.getSelectedIndex()));
         carYear = String.valueOf(yearSearch.getItemAt(yearSearch.getSelectedIndex()));
         carBrand = String.valueOf(modelSearch.getItemAt(modelSearch.getSelectedIndex()));
         searchString = citySearch.getItemAt(citySearch.getSelectedIndex());
- 
+
         for (CarProperties car : carList) {
             if (isItemValid(carCity, carYear, carBrand, car)) {
                 allFound.add(car);
             }
         }
- 
+
         DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
         dtm.setRowCount(0);
         for (CarProperties car : allFound) {
@@ -534,7 +533,7 @@ public class SearchCars extends javax.swing.JFrame {
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
             row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
- 
+
             dtm.addRow(row);
         }
         if (allFound.isEmpty()) {

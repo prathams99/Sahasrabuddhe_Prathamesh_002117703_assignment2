@@ -38,7 +38,7 @@ public class ManageCar extends javax.swing.JFrame {
     private int i;
     private int bookedCars = 0;
     private int availableCars = 0;
-    
+
     /**
      * Creates new form ViewCar
      */
@@ -49,7 +49,7 @@ public class ManageCar extends javax.swing.JFrame {
         initImage();
         fillData();
     }
-    
+
     /**
      * Creates new form ManageCar
      */
@@ -210,8 +210,7 @@ public class ManageCar extends javax.swing.JFrame {
                 .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelUpdateCarLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(updateNewCar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(87, 87, 87))
                     .addGroup(panelUpdateCarLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -241,16 +240,17 @@ public class ManageCar extends javax.swing.JFrame {
                             .addComponent(newYear)
                             .addComponent(newSerial)
                             .addComponent(newCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateCarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(updateNewCar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelUpdateCarLayout.setVerticalGroup(
             panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelUpdateCarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateNewCar))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(newBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,7 +291,9 @@ public class ManageCar extends javax.swing.JFrame {
                     .addComponent(maintenanceYes)
                     .addComponent(maintenanceNo)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(165, 165, 165))
+                .addGap(18, 18, 18)
+                .addComponent(updateNewCar)
+                .addGap(25, 25, 25))
         );
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 30)); // NOI18N
@@ -375,7 +377,7 @@ public class ManageCar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(19, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,17 +388,18 @@ public class ManageCar extends javax.swing.JFrame {
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(451, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(updateCar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchBySerial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addComponent(panelUpdateCar, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelUpdateCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))))
         );
 
         pack();
@@ -414,7 +417,7 @@ public class ManageCar extends javax.swing.JFrame {
         String searchString = "";
         modelName = searchBySerial.getText();
         searchString = searchBySerial.getText();
-        
+
         for (CarProperties car : carList) {
             if (car.getCarSerialNumber() == Integer.parseInt(modelName)) {
                 modelNamesTemp.add(car);
@@ -432,7 +435,7 @@ public class ManageCar extends javax.swing.JFrame {
         }
         indexGlobal = carList.indexOf(modelNamesTemp.get(0));
         panelUpdateCar.setVisible(true);
-        
+
         addCar = CarConfiguration.searchSerial(Integer.parseInt(modelName));
         newModel.setText(addCar.get(0).getModelName());
         newBrand.setText(addCar.get(0).getBrandName());
@@ -491,7 +494,7 @@ public class ManageCar extends javax.swing.JFrame {
         maintenanceYes.setSelected(false);
         certificationSelected = true;
     }//GEN-LAST:event_maintenanceNoActionPerformed
-    
+
     private void validateFields() {
         if (!cp.validateName(newBrand.getText())) {
             JOptionPane.showMessageDialog(this, "Please enter a valid brand name.");
@@ -527,7 +530,7 @@ public class ManageCar extends javax.swing.JFrame {
         }
         storeFields();
     }
-    
+
     private void storeFields() {
         carList.get(indexGlobal).setBrandName(newBrand.getText());
         carList.get(indexGlobal).setModelName(newModel.getText());
@@ -538,37 +541,37 @@ public class ManageCar extends javax.swing.JFrame {
         carList.get(indexGlobal).setCarCity(newCity.getItemAt(newCity.getSelectedIndex()));
         carList.get(indexGlobal).setIsAvailable(availableYes.isSelected());
         carList.get(indexGlobal).setCarMaintenanceCertificate(maintenanceYes.isSelected());
-        
+
         LocalDateTime now = LocalDateTime.now();
         Date currentTime = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
         carList.get(indexGlobal).setTimeStamp(currentTime);
         openNextPanel();
     }
-    
+
     private void openNextPanel() {
-        JOptionPane.showMessageDialog(this,"Car Details Successfully updated!");
+        JOptionPane.showMessageDialog(this, "Car Details Successfully updated!");
         super.dispose();
         DashboardPanel dashboardPanel = new DashboardPanel(carList);
         dashboardPanel.setVisible(true);
     }
-    
+
     private void fillData() {
         DefaultTableModel dtm = (DefaultTableModel) carTable.getModel();
         dtm.setRowCount(0);
-        
+
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         carTable.setDefaultRenderer(String.class, centerRenderer);
-        
+
         DefaultTableCellRenderer renderer = (DefaultTableCellRenderer) carTable.getTableHeader().getDefaultRenderer();
         renderer.setHorizontalAlignment(0);
         DateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm");
-        
-        for(int x=0; x < carTable.getColumnCount(); x++){
-         carTable.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+
+        for (int x = 0; x < carTable.getColumnCount(); x++) {
+            carTable.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
         }
-        
-        for(CarProperties car : carList){
+
+        for (CarProperties car : carList) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -583,7 +586,7 @@ public class ManageCar extends javax.swing.JFrame {
             dtm.addRow(row);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -618,33 +621,33 @@ public class ManageCar extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void initImage() {
         ImagePanel jPanel1 = new ImagePanel("src/assets/gear.jpg");
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );        
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         panelUpdateCar.setVisible(false);
         newYear.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {

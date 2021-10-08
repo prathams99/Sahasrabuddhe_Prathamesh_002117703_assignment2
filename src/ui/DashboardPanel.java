@@ -18,24 +18,21 @@ import utils.CarProperties;
  * @author prath
  */
 public class DashboardPanel extends javax.swing.JFrame {
-    
+
     private List<CarProperties> carList;
     private CarConfiguration carManager;
     List<String> tempName = new ArrayList<String>();
-    
+
     /**
      * Creates new form DashboardPanel
      */
     public DashboardPanel(List<CarProperties> carList) {
         this.carManager = getCarList();
         this.carList = carList;
-//        carList = CarManager.getCarList().carList;
-//        for(CarProperties c:carList)
-//        System.out.println(c);
         initComponents();
         init();
     }
-    
+
     /**
      * Creates new form DashboardPanel
      */
@@ -194,12 +191,10 @@ public class DashboardPanel extends javax.swing.JFrame {
         super.dispose();
     }//GEN-LAST:event_buttonCreateActionPerformed
 
-    
     private void init() {
-       
+
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -234,7 +229,7 @@ public class DashboardPanel extends javax.swing.JFrame {
             }
         });
     }
-  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCreate;
     private javax.swing.JButton buttonManage;
