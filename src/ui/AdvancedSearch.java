@@ -7,6 +7,7 @@ package ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +23,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
 
     private CarConfiguration carManager;
     private List<CarProperties> carList;
+    private CarProperties cp = new CarProperties();
     
     /**
      * Creates new form ViewCar
@@ -68,7 +70,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
         modelSearch = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         certifiedCar = new javax.swing.JComboBox<>();
-        minSeatsInputhuehue = new javax.swing.JTextField();
+        minSeatsInput = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -187,7 +189,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(maxInput, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(minSeatsInputhuehue)
+                                        .addComponent(minSeatsInput)
                                         .addGap(4, 4, 4)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -233,7 +235,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(certifiedCar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(minSeatsInputhuehue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(minSeatsInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -259,17 +261,46 @@ public class AdvancedSearch extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        validateMinMax();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void validateMinMax() {
+        if (!cp.validateNumber(minSeatsInput.getText()) || minSeatsInput.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number for minimum seats.");
+            return;
+        }
+        if (!cp.validateNumber(maxInput.getText()) || maxInput.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number for maximum seats.");
+            return;
+        }
+        if ((Integer.parseInt(minSeatsInput.getText()) > (Integer.parseInt(maxInput.getText())))) {
+            JOptionPane.showMessageDialog(this, "Minimum Seats cannot be more than Maximum Seats.");
+            return;
+        }
+        if ((Integer.parseInt(minSeatsInput.getText()) == (Integer.parseInt(maxInput.getText())))) {
+            JOptionPane.showMessageDialog(this, "Minimum Seats cannot be same as of Maximum Seats.");
+            return;
+        }
+        if ((Integer.parseInt(minSeatsInput.getText()) == 0) || (Integer.parseInt(maxInput.getText()) == 0)) {
+            JOptionPane.showMessageDialog(this, "Seats cannot be empty.");
+            return;
+        }
+        if ((Integer.parseInt(minSeatsInput.getText()) > 8)) {
+            JOptionPane.showMessageDialog(this, "Seats cannot be empty.");
+            return;
+        }
+        searchValidatedSeats();       
+    }
+    
+    private void searchValidatedSeats() {
         List<CarProperties> tempList = new ArrayList<CarProperties>();
         int minCount;
         int maxCount;
         
-//        System.out.println("MIN HUEHUE" + minSeatsInputhuehue.getText());
-//        System.out.println("HUEHUE" + maxInput.getText());
-        
-        minCount = Integer.parseInt(minSeatsInputhuehue.getText());
+        minCount = Integer.parseInt(minSeatsInput.getText());
         maxCount = Integer.parseInt(maxInput.getText());
         
-         for(CarProperties car: carList){
+        for(CarProperties car: carList){
             if(car.getCarMinSeats() >= minCount  && car.getCarMaxSeats() <= maxCount){
                 tempList.add(car);
             }
@@ -291,12 +322,23 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
+    
     private void serialSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serialSearchActionPerformed
+        validateSerial();
+    }//GEN-LAST:event_serialSearchActionPerformed
+
+    private void validateSerial() {
+        if (!cp.validateNumber(serialInput.getText()) || serialInput.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid serial number.");
+            return;
+        }
+        searchValidatedSerial();
+    }
+    
+    private void searchValidatedSerial() {
         List<CarProperties> tempSerial = new ArrayList<CarProperties>();
         int serialNumber;
-        
         serialNumber = Integer.parseInt(serialInput.getText());
         
          for(CarProperties car: carList){
@@ -307,7 +349,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
         
         DefaultTableModel dtm = (DefaultTableModel) advancedSearchTable.getModel();
         dtm.setRowCount(0); 
-        for(CarProperties car : tempSerial){
+        for(CarProperties car : tempSerial) {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
@@ -320,9 +362,22 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
-    }//GEN-LAST:event_serialSearchActionPerformed
-
+        
+    }
+    
     private void modelSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelSearchActionPerformed
+        validateModel();
+    }//GEN-LAST:event_modelSearchActionPerformed
+
+    private void validateModel() {
+        if(!cp.validateNameNumber(modelInput.getText())) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid model name.");
+            return;
+        }
+        searchValidatedModel();
+    }
+    
+    private void searchValidatedModel() {
         List<CarProperties> tempModel = new ArrayList<CarProperties>();
         String modelName;
         
@@ -349,8 +404,8 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
-    }//GEN-LAST:event_modelSearchActionPerformed
-
+    }
+    
     private void certifiedCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_certifiedCarActionPerformed
         List<CarProperties> certificateList = new ArrayList<CarProperties>();
         certificateList = findCertificate(carList);
@@ -528,7 +583,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField maxInput;
-    private javax.swing.JTextField minSeatsInputhuehue;
+    private javax.swing.JTextField minSeatsInput;
     private javax.swing.JTextField modelInput;
     private javax.swing.JButton modelSearch;
     private javax.swing.JTextField serialInput;

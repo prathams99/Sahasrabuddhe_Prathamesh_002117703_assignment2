@@ -46,7 +46,7 @@
                                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                                   <Component id="maxInput" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="minSeatsInputhuehue" max="32767" attributes="0"/>
+                                      <Component id="minSeatsInput" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -111,7 +111,7 @@
               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="certifiedCar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="minSeatsInputhuehue" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="minSeatsInput" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -342,7 +342,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="minSeatsInputhuehue">
+    <Component class="javax.swing.JTextField" name="minSeatsInput">
     </Component>
   </SubComponents>
 </Form>
