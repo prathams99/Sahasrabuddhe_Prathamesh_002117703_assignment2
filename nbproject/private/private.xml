@@ -5,10 +5,10 @@
         <group>
             <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/ui/ManageCar.java</file>
             <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/ui/CreateCar.java</file>
-            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/utils/CarManager.java</file>
-            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/ui/AdminPanel.java</file>
-            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/ui/DashboardPanel.java</file>
-            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/utils/DatePicker.java</file>
+            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/ui/AdvancedSearch.java</file>
+            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/ui/SearchCars.java</file>
+            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/utils/CarProperties.java</file>
+            <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/utils/CarConfiguration.java</file>
             <file>file:/C:/Users/prath/Documents/NetBeansProjects/UberApp/src/ui/ViewCar.java</file>
         </group>
     </open-files>

@@ -10,8 +10,8 @@ import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import utils.CarManager;
-import static utils.CarManager.getCarList;
+import utils.CarConfiguration;
+import static utils.CarConfiguration.getCarList;
 import utils.CarProperties;
 
 /**
@@ -20,7 +20,7 @@ import utils.CarProperties;
  */
 public class AdvancedSearch extends javax.swing.JFrame {
 
-    private CarManager carManager;
+    private CarConfiguration carManager;
     private List<CarProperties> carList;
     
     /**
@@ -288,7 +288,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -312,12 +312,12 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
     }//GEN-LAST:event_serialSearchActionPerformed
@@ -341,12 +341,12 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
     }//GEN-LAST:event_modelSearchActionPerformed
@@ -407,7 +407,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
                     certified.add(car);
                 }
             }
-        } else if (modelString.equals("Uncertified")) {
+        } else if (modelString.equals("Expired")) {
             for (CarProperties car : carList) {
                 if (!car.isCarMaintenanceCertificate()) {
                     certified.add(car);
@@ -431,7 +431,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
 //            }
 //        }
 //        for (CarProperties car : carList) {
-//            if (modelString.equals("Uncertified") && !car.isCarMaintenanceCertificate()) {
+//            if (modelString.equals("Expired") && !car.isCarMaintenanceCertificate()) {
 //                if (car.getBrandName().equals(searchString)) {
 //                        certified.add(car);
 //                    } else {
@@ -446,12 +446,12 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
         return certified;
@@ -510,7 +510,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
     }

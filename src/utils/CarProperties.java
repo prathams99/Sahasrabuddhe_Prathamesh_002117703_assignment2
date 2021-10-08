@@ -5,6 +5,7 @@
  */
 package utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -22,9 +23,39 @@ public class CarProperties {
     private boolean carMaintenanceCertificate;
     private int carYear;
     private boolean isAvailable;
-    private Date carDate;  
+    private Date carDate;
+    private Date timeStamp;
     
-    public CarProperties(String brandName, String modelName, String carCity, int carSerialNumber, int carMaxSeats, int carMinSeats, boolean carMaintenanceCertificate, int carYear, boolean isAvailable) {
+    // Input validators
+    private final String nameRegex = "^[a-zA-Z]+$";
+    private final String numberRegex = "^[0-9]*$";
+    private final String nameNumberRegex = "^[a-zA-Z0-9]+$";
+
+    public Date getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Date timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public CarProperties(){
+        this.timeStamp = new Date();
+    }
+    
+    public boolean validateName(String inputName) {
+        return inputName.matches(nameRegex);
+    }
+    
+    public boolean validateNumber(String numberInput) {
+        return numberInput.matches(numberRegex);
+    }
+    
+    public boolean validateNameNumber(String nameNumberInput) {
+        return nameNumberInput.matches(nameNumberRegex);
+    }
+    
+    public CarProperties(String brandName, String modelName, String carCity, int carSerialNumber, int carMaxSeats, int carMinSeats, boolean carMaintenanceCertificate, int carYear, boolean isAvailable, Date timeStamp) {
         this.brandName = brandName;
         this.modelName = modelName;
         this.carCity = carCity;
@@ -35,6 +66,7 @@ public class CarProperties {
         this.carMaintenanceCertificate = carMaintenanceCertificate;
         this.carYear = carYear;
         this.isAvailable = isAvailable;
+        this.timeStamp = timeStamp;
     }
 
     public String getBrandName() {

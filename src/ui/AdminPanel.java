@@ -7,8 +7,8 @@ package ui;
 
 import java.util.List;
 import javax.swing.JOptionPane;
-import utils.CarManager;
-import static utils.CarManager.getCarList;
+import utils.CarConfiguration;
+import static utils.CarConfiguration.getCarList;
 import utils.CarProperties;
 
 /**
@@ -17,7 +17,7 @@ import utils.CarProperties;
  */
 public class AdminPanel extends javax.swing.JFrame {
 
-    private CarManager carManager;
+    private CarConfiguration carManager;
     private List<CarProperties> carList;
     private String username = "admin";
     private String password = "admin123";
@@ -25,6 +25,8 @@ public class AdminPanel extends javax.swing.JFrame {
     
     /**
      * Creates new form CreateCar
+     * @param carList
+     * @param isCreate
      */
     public AdminPanel(List<CarProperties> carList, boolean isCreate) {
         this.carManager = getCarList();

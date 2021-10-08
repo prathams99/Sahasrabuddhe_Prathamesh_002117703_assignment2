@@ -13,8 +13,8 @@ import java.util.Set;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import utils.CarManager;
-import static utils.CarManager.getCarList;
+import utils.CarConfiguration;
+import static utils.CarConfiguration.getCarList;
 import utils.CarProperties;
 
 /**
@@ -23,7 +23,7 @@ import utils.CarProperties;
  */
 public class SearchCars extends javax.swing.JFrame {
 
-    private CarManager carManager;
+    private CarConfiguration carManager;
     private List<CarProperties> carList;
     private List<CarProperties> tempCars;
     private List<String> getBrand = new ArrayList<String>();
@@ -40,18 +40,6 @@ public class SearchCars extends javax.swing.JFrame {
         for(int index = 0; index < carList.size(); index++){
                 getBrand.add(carList.get(index).getBrandName());
         }
-//        Set<String> set = new HashSet<>(getBrand);
-//        getBrand.clear();
-//        getBrand.addAll(set);
-//        System.out.println(set);
-//        String hardik = set.toString();
-//        hardik = hardik.replaceAll(",", "\",");
-//        String joined = String.join(",", set.toString());
-//        System.out.println(hardik);
-//        List.of(joined);
-//        String hueheu = String.valueOf(List.of(joined));
-//        System.out.println(hueheu + "HUEHEU");
-//        modelSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { hueheu }));
     }
     
     /**
@@ -108,7 +96,7 @@ public class SearchCars extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Brand", "Model", "Serial No", "Max Seats", "Min Seats", "Location", "Year", "Available", "Certificate"
+                "Brand", "Model", "Serial No", "Min Seats", "Max Seats", "Location", "Year", "Available", "Certificate"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -356,12 +344,12 @@ public class SearchCars extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
     }
@@ -395,12 +383,12 @@ public class SearchCars extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
             row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
-            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Uncertified";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             dtm.addRow(row);
         }
         return yearList;
@@ -435,11 +423,12 @@ public class SearchCars extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
-
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
             
             dtm.addRow(row);
         }
@@ -475,10 +464,12 @@ public class SearchCars extends javax.swing.JFrame {
             row[0] = car.getBrandName();
             row[1] = car.getModelName();
             row[2] = car.getCarSerialNumber();
-            row[3] = car.getCarMaxSeats();
-            row[4] = car.getCarMinSeats();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
             row[5] = car.getCarCity();
             row[6] = car.getCarYear();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
 
             
             dtm.addRow(row);

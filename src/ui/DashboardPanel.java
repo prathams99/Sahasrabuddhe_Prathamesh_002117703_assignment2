@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import utils.CarManager;
-import static utils.CarManager.getCarList;
+import utils.CarConfiguration;
+import static utils.CarConfiguration.getCarList;
 import utils.CarProperties;
 
 /**
@@ -20,7 +20,7 @@ import utils.CarProperties;
 public class DashboardPanel extends javax.swing.JFrame {
     
     private List<CarProperties> carList;
-    private CarManager carManager;
+    private CarConfiguration carManager;
     List<String> tempName = new ArrayList<String>();
     
     /**
@@ -40,7 +40,7 @@ public class DashboardPanel extends javax.swing.JFrame {
      * Creates new form DashboardPanel
      */
     public DashboardPanel() {
-        carList = CarManager.getCarList().carList;
+        carList = CarConfiguration.getCarList().carList;
         initComponents();
         init();
     }

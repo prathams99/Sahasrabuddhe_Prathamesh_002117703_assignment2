@@ -5,14 +5,21 @@
  */
 package ui;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import utils.CarManager;
-import static utils.CarManager.getCarList;
+import utils.CarConfiguration;
+import static utils.CarConfiguration.getCarList;
 import utils.CarProperties;
 
 /**
@@ -21,10 +28,13 @@ import utils.CarProperties;
  */
 public class ManageCar extends javax.swing.JFrame {
 
-    private CarManager carManager;
+    private CarConfiguration carManager;
     private List<CarProperties> carList;
+    private CarProperties cp = new CarProperties();
     List<CarProperties> addCar = new ArrayList<CarProperties>();
     private int indexGlobal = -1;
+    private boolean availabilitySelected = false;
+    private boolean certificationSelected = false;
     
     /**
      * Creates new form ViewCar
@@ -59,7 +69,6 @@ public class ManageCar extends javax.swing.JFrame {
         newYear = new javax.swing.JTextField();
         newSerial = new javax.swing.JTextField();
         newMin = new javax.swing.JTextField();
-        newCity = new javax.swing.JTextField();
         newMax = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -75,6 +84,7 @@ public class ManageCar extends javax.swing.JFrame {
         maintenanceNo = new javax.swing.JCheckBox();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        newCity = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -183,6 +193,8 @@ public class ManageCar extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Maintenance");
 
+        newCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "New York", "New Jersey", "California" }));
+
         javax.swing.GroupLayout panelUpdateCarLayout = new javax.swing.GroupLayout(panelUpdateCar);
         panelUpdateCar.setLayout(panelUpdateCarLayout);
         panelUpdateCarLayout.setHorizontalGroup(
@@ -215,11 +227,11 @@ public class ManageCar extends javax.swing.JFrame {
                                 .addComponent(availableNo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(newMin, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                             .addComponent(newMax)
-                            .addComponent(newCity)
                             .addComponent(newBrand)
                             .addComponent(newModel)
                             .addComponent(newYear)
-                            .addComponent(newSerial))
+                            .addComponent(newSerial)
+                            .addComponent(newCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 112, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelUpdateCarLayout.createSequentialGroup()
@@ -259,9 +271,9 @@ public class ManageCar extends javax.swing.JFrame {
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(newMax))
                 .addGap(18, 18, 18)
-                .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(newCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(newCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(panelUpdateCarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelUpdateCarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -380,10 +392,9 @@ public class ManageCar extends javax.swing.JFrame {
         System.out.println(indexGlobal + "INDEX");
         panelUpdateCar.setVisible(true);
         
-        addCar = CarManager.searchModel(modelName);
+        addCar = CarConfiguration.searchModel(modelName);
         newModel.setText(modelName);
         newBrand.setText(addCar.get(0).getBrandName());
-        newCity.setText(addCar.get(0).getCarCity());
         newYear.setText(String.valueOf(addCar.get(0).getCarYear()));
         newMin.setText(String.valueOf(addCar.get(0).getCarMinSeats()));
         newMax.setText(String.valueOf(addCar.get(0).getCarMaxSeats()));
@@ -413,20 +424,25 @@ public class ManageCar extends javax.swing.JFrame {
     }//GEN-LAST:event_newModelActionPerformed
 
     private void updateNewCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateNewCarActionPerformed
-        carList.get(indexGlobal).setBrandName(newBrand.getText());
-        carList.get(indexGlobal).setModelName(newModel.getText());
-        carList.get(indexGlobal).setCarYear(Integer.parseInt(newYear.getText()));
-        carList.get(indexGlobal).setCarSerialNumber(Integer.parseInt(newSerial.getText()));
-        carList.get(indexGlobal).setCarMinSeats(Integer.parseInt(newMin.getText()));
-        carList.get(indexGlobal).setCarMaxSeats(Integer.parseInt(newMax.getText()));
-        carList.get(indexGlobal).setCarCity(newCity.getText());
-        carList.get(indexGlobal).setIsAvailable(availableYes.isSelected());
-        carList.get(indexGlobal).setCarMaintenanceCertificate(maintenanceYes.isSelected());
-        
-        JOptionPane.showMessageDialog(this,"Car Details Successfully updated!");
-        super.dispose();
-        DashboardPanel dashboardPanel = new DashboardPanel(carList);
-        dashboardPanel.setVisible(true);
+//        carList.get(indexGlobal).setBrandName(newBrand.getText());
+//        carList.get(indexGlobal).setModelName(newModel.getText());
+//        carList.get(indexGlobal).setCarYear(Integer.parseInt(newYear.getText()));
+//        carList.get(indexGlobal).setCarSerialNumber(Integer.parseInt(newSerial.getText()));
+//        carList.get(indexGlobal).setCarMinSeats(Integer.parseInt(newMin.getText()));
+//        carList.get(indexGlobal).setCarMaxSeats(Integer.parseInt(newMax.getText()));
+//        carList.get(indexGlobal).setCarCity(newCity.getText());
+//        carList.get(indexGlobal).setIsAvailable(availableYes.isSelected());
+//        carList.get(indexGlobal).setCarMaintenanceCertificate(maintenanceYes.isSelected());
+//        
+//        LocalDateTime now = LocalDateTime.now();
+//        Date currentTime = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+//        carList.get(indexGlobal).setTimeStamp(currentTime);
+//        
+//        JOptionPane.showMessageDialog(this,"Car Details Successfully updated!");
+//        super.dispose();
+//        DashboardPanel dashboardPanel = new DashboardPanel(carList);
+//        dashboardPanel.setVisible(true);
+        validateFields();
     }//GEN-LAST:event_updateNewCarActionPerformed
 
     private void newBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBrandActionPerformed
@@ -435,19 +451,83 @@ public class ManageCar extends javax.swing.JFrame {
 
     private void availableYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableYesActionPerformed
         availableNo.setSelected(false);
+        availabilitySelected = true;
     }//GEN-LAST:event_availableYesActionPerformed
 
     private void availableNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableNoActionPerformed
         availableYes.setSelected(false);
+        availabilitySelected = true;
     }//GEN-LAST:event_availableNoActionPerformed
 
     private void maintenanceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceYesActionPerformed
         maintenanceNo.setSelected(false);
+        certificationSelected = true;
     }//GEN-LAST:event_maintenanceYesActionPerformed
 
     private void maintenanceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceNoActionPerformed
         maintenanceYes.setSelected(false);
+        certificationSelected = true;
     }//GEN-LAST:event_maintenanceNoActionPerformed
+    
+    private void validateFields() {
+        if (!cp.validateName(newBrand.getText())) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid brand name.");
+            return;
+        }
+        if (!cp.validateNameNumber(newModel.getText())) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid model name.");
+            return;
+        }
+        if (!cp.validateNumber(newYear.getText()) || newYear.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid year.");
+            return;
+        }
+        if (!cp.validateNumber(newSerial.getText()) || newSerial.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid serial number.");
+            return;
+        }
+        if (!cp.validateNumber(newMin.getText()) || newMin.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number of minimum seats.");
+            return;
+        }
+        if (!cp.validateNumber(newMax.getText()) || newMax.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number of maximum seats.");
+            return;
+        }
+        if (!availabilitySelected) {
+            JOptionPane.showMessageDialog(this, "Please select the validity of the car.");
+            return;
+        }
+        if (!certificationSelected) {
+            JOptionPane.showMessageDialog(this, "Please select the certification of the car.");
+            return;
+        }
+        storeFields();
+    }
+    
+    private void storeFields() {
+        carList.get(indexGlobal).setBrandName(newBrand.getText());
+        carList.get(indexGlobal).setModelName(newModel.getText());
+        carList.get(indexGlobal).setCarYear(Integer.parseInt(newYear.getText()));
+        carList.get(indexGlobal).setCarSerialNumber(Integer.parseInt(newSerial.getText()));
+        carList.get(indexGlobal).setCarMinSeats(Integer.parseInt(newMin.getText()));
+        carList.get(indexGlobal).setCarMaxSeats(Integer.parseInt(newMax.getText()));
+        carList.get(indexGlobal).setCarCity(newCity.getItemAt(newCity.getSelectedIndex()));
+        carList.get(indexGlobal).setIsAvailable(availableYes.isSelected());
+        carList.get(indexGlobal).setCarMaintenanceCertificate(maintenanceYes.isSelected());
+        
+        LocalDateTime now = LocalDateTime.now();
+        Date currentTime = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+        carList.get(indexGlobal).setTimeStamp(currentTime);
+        openNextPanel();
+    }
+    
+    private void openNextPanel() {
+        JOptionPane.showMessageDialog(this,"Car Details Successfully updated!");
+        super.dispose();
+        DashboardPanel dashboardPanel = new DashboardPanel(carList);
+        dashboardPanel.setVisible(true);
+    }
     
     /**
      * @param args the command line arguments
@@ -510,7 +590,15 @@ public class ManageCar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );        
-        panelUpdateCar.setVisible(false);  
+        panelUpdateCar.setVisible(false);
+        newYear.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (newYear.getText().length() >= 4) // limit textfield to 4 characters
+                {
+                    e.consume();
+                }
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -533,7 +621,7 @@ public class ManageCar extends javax.swing.JFrame {
     private javax.swing.JCheckBox maintenanceNo;
     private javax.swing.JCheckBox maintenanceYes;
     private javax.swing.JTextField newBrand;
-    private javax.swing.JTextField newCity;
+    private javax.swing.JComboBox<String> newCity;
     private javax.swing.JTextField newMax;
     private javax.swing.JTextField newMin;
     private javax.swing.JTextField newModel;
