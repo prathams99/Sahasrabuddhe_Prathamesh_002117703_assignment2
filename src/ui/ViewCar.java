@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +28,6 @@ public class ViewCar extends javax.swing.JFrame {
     private List<CarProperties> carList;
     private CarProperties cp = new CarProperties();
     private int i;
-    private boolean isCarAvailable;
     private int bookedCars = 0;
     private int availableCars = 0;
 
@@ -476,14 +476,24 @@ public class ViewCar extends javax.swing.JFrame {
         bookedText.setText(String.valueOf(bookedCars));
         
         // First Car
-        if (carList.get(0).isAvailable()) {
-            firstBrand.setText(carList.get(0).getBrandName());
-            firstModel.setText(carList.get(0).getModelName());
-            firstYear.setText(String.valueOf(carList.get(0).getCarYear()));
-            firstSerial.setText(String.valueOf(carList.get(0).getCarSerialNumber()));
-            firstMin.setText(String.valueOf(carList.get(0).getCarMinSeats()));
-            firstMax.setText(String.valueOf(carList.get(0).getCarMaxSeats()));
-            firstCertification.setText(carList.get(0).isCarMaintenanceCertificate() ? "Certified" : "Expired");
+        CarProperties firstAvailableCar = null;
+        for (CarProperties car : carList) {
+            if (car.isAvailable()) {
+                firstAvailableCar = car;
+                break;
+                
+            }
+        }
+        if (firstAvailableCar != null) {
+            firstBrand.setText(firstAvailableCar.getBrandName());
+            firstModel.setText(firstAvailableCar.getModelName());
+            firstYear.setText(String.valueOf(firstAvailableCar.getCarYear()));
+            firstSerial.setText(String.valueOf(firstAvailableCar.getCarSerialNumber()));
+            firstMin.setText(String.valueOf(firstAvailableCar.getCarMinSeats()));
+            firstMax.setText(String.valueOf(firstAvailableCar.getCarMaxSeats()));
+            firstCertification.setText(firstAvailableCar.isCarMaintenanceCertificate() ? "Certified" : "Expired");
+        } else {
+            JOptionPane.showMessageDialog(this, "Sorry. There are no available cars right now!");
         }
     }
 

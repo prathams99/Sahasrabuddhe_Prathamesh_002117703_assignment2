@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -70,6 +71,7 @@ public class SearchCars extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         citySearch = new javax.swing.JComboBox<>();
         backButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,7 +130,7 @@ public class SearchCars extends javax.swing.JFrame {
             }
         });
 
-        modelSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Hyundai", "Honda", "Toyota", "Tesla", "Chevrolet", "BMW" }));
+        modelSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALL", "Hyundai", "Honda", "Toyota", "Tesla", "Chevrolet", "BMW" }));
         modelSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modelSearchActionPerformed(evt);
@@ -171,6 +173,13 @@ public class SearchCars extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Combined Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,11 +201,14 @@ public class SearchCars extends javax.swing.JFrame {
                                 .addGap(647, 1000, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(modelSearch, javax.swing.GroupLayout.Alignment.LEADING, 0, 107, Short.MAX_VALUE)
-                                        .addComponent(yearSearch, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(modelSearch, javax.swing.GroupLayout.Alignment.LEADING, 0, 107, Short.MAX_VALUE)
+                                            .addComponent(yearSearch, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(129, 129, 129)
+                                        .addComponent(jButton1))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
@@ -221,12 +233,14 @@ public class SearchCars extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(modelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modelSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(citySearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(searchMaster, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -260,6 +274,11 @@ public class SearchCars extends javax.swing.JFrame {
         DashboardPanel dashboardPanel = new DashboardPanel(carList);
         dashboardPanel.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        List<CarProperties> allSearch = new ArrayList<CarProperties>();
+        allSearch = searchAll(carList);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,7 +380,7 @@ public class SearchCars extends javax.swing.JFrame {
         yearString = String.valueOf(yearSearch.getItemAt(yearSearch.getSelectedIndex()));
         searchString = yearSearch.getItemAt(yearSearch.getSelectedIndex());
         for(CarProperties car: carList){
-            if(!yearString.equals("All")){
+            if(!yearString.equals("ALL")){
             if (car.getCarYear() == Integer.parseInt(yearString)){
                 if (car.getBrandName().equals(searchString)){
                     yearList.add(car);
@@ -372,7 +391,7 @@ public class SearchCars extends javax.swing.JFrame {
             }
         }
          for(CarProperties car: carList){
-        if(yearString.equals("All")){
+        if(yearString.equals("ALL")){
             yearList.add(car);
          }
          }
@@ -401,7 +420,7 @@ public class SearchCars extends javax.swing.JFrame {
         modelString = String.valueOf(modelSearch.getItemAt(modelSearch.getSelectedIndex()));
         searchString = modelSearch.getItemAt(modelSearch.getSelectedIndex());
         for(CarProperties car: carList){
-            if(!modelString.equals("All")){
+            if(!modelString.equals("ALL")){
             if (car.getBrandName().equals(String.valueOf(modelString))){
                 if (car.getBrandName().equals(searchString)){
                     modelFound.add(car);
@@ -412,7 +431,7 @@ public class SearchCars extends javax.swing.JFrame {
             }
         }
          for(CarProperties car: carList){
-        if(modelString.equals("All")){
+        if(modelString.equals("ALL")){
             modelFound.add(car);
          }
          }
@@ -442,7 +461,7 @@ public class SearchCars extends javax.swing.JFrame {
         cityName = String.valueOf(citySearch.getItemAt(citySearch.getSelectedIndex()));
         searchString = citySearch.getItemAt(citySearch.getSelectedIndex());
         for(CarProperties car: carList){
-            if(!cityName.equals("All")){
+            if(!cityName.equals("ALL")){
             if (car.getCarCity() == String.valueOf(cityName)){
                 if (car.getCarCity().equals(searchString)){
                     cityFound.add(car);
@@ -453,7 +472,7 @@ public class SearchCars extends javax.swing.JFrame {
             }
         }
         for(CarProperties car: carList){
-            if(cityName.equals("All")){
+            if(cityName.equals("ALL")){
                 cityFound.add(car);
             }
          }
@@ -476,10 +495,65 @@ public class SearchCars extends javax.swing.JFrame {
         }
         return cityFound;
     }
+    
+    private boolean isItemValid(String city, String year, String brand, CarProperties car) {
+        boolean isValid = true;
+        if (!city.equals("ALL")) {
+            isValid = isValid & car.getCarCity().equals(city);
+        }
+        if (!year.equals("ALL")) {
+            isValid = isValid & car.getCarYear() == Integer.parseInt(year);
+        }
+        if (!brand.equals("ALL")) {
+            isValid = isValid & car.getBrandName().equals(brand);
+        }
+        return isValid;
+    }
+ 
+    private List<CarProperties> searchAll(List<CarProperties> carList) {
+        List<CarProperties> allFound = new ArrayList<CarProperties>();
+        String carCity = "";
+        String carYear = "";
+        String carBrand = "";
+        String searchString = "";
+ 
+        carCity = String.valueOf(citySearch.getItemAt(citySearch.getSelectedIndex()));
+        carYear = String.valueOf(yearSearch.getItemAt(yearSearch.getSelectedIndex()));
+        carBrand = String.valueOf(modelSearch.getItemAt(modelSearch.getSelectedIndex()));
+        searchString = citySearch.getItemAt(citySearch.getSelectedIndex());
+ 
+        for (CarProperties car : carList) {
+            if (isItemValid(carCity, carYear, carBrand, car)) {
+                allFound.add(car);
+            }
+        }
+ 
+        DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
+        dtm.setRowCount(0);
+        for (CarProperties car : allFound) {
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0] = car.getBrandName();
+            row[1] = car.getModelName();
+            row[2] = car.getCarSerialNumber();
+            row[3] = car.getCarMinSeats();
+            row[4] = car.getCarMaxSeats();
+            row[5] = car.getCarCity();
+            row[6] = car.getCarYear();
+            row[7] = (car.isAvailable()) ? "Available" : "Unavailable";
+            row[8] = (car.isCarMaintenanceCertificate()) ? "Certified" : "Expired";
+ 
+            dtm.addRow(row);
+        }
+        if (allFound.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No cars found!");
+        }
+        return allFound;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JComboBox<String> citySearch;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

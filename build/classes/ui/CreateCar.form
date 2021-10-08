@@ -315,7 +315,7 @@
           <StringArray count="4">
             <StringItem index="0" value="Boston"/>
             <StringItem index="1" value="New York"/>
-            <StringItem index="2" value="New Jerey"/>
+            <StringItem index="2" value="New Jersey"/>
             <StringItem index="3" value="California"/>
           </StringArray>
         </Property>

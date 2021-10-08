@@ -25,8 +25,6 @@ public class CreateCar extends javax.swing.JFrame {
     private CarConfiguration carManager;
     private CarProperties cp = new CarProperties();
     private List<CarProperties> carList;
-    private boolean availabilitySelected = false;
-    private boolean certificationSelected = false;
     
     /**
      * Creates new form CreateCar
@@ -161,7 +159,7 @@ public class CreateCar extends javax.swing.JFrame {
             }
         });
 
-        cityInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "New York", "New Jerey", "California" }));
+        cityInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Boston", "New York", "New Jersey", "California" }));
         cityInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityInputActionPerformed(evt);
@@ -284,12 +282,10 @@ public class CreateCar extends javax.swing.JFrame {
 
     private void availableYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableYesActionPerformed
         availableNo.setSelected(false);
-        availabilitySelected = true;
     }//GEN-LAST:event_availableYesActionPerformed
 
     private void maintenanceYesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceYesActionPerformed
         maintenanceNo.setSelected(false);
-        certificationSelected = true;
     }//GEN-LAST:event_maintenanceYesActionPerformed
 
     private void cityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityInputActionPerformed
@@ -321,7 +317,7 @@ public class CreateCar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter a valid serial number.");
             return;
         }
-        if (!availabilitySelected) {
+        if (!(availableYes.isSelected() | availableNo.isSelected())) {
             JOptionPane.showMessageDialog(this, "Please select the validity of the car.");
             return;
         }
@@ -333,7 +329,7 @@ public class CreateCar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter a valid number of maximum seats.");
             return;
         }
-        if (!certificationSelected) {
+        if (!(maintenanceYes.isSelected() | maintenanceNo.isSelected())) {
             JOptionPane.showMessageDialog(this, "Please select the certification of the car.");
             return;
         }
@@ -372,12 +368,10 @@ public class CreateCar extends javax.swing.JFrame {
 
     private void availableNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableNoActionPerformed
         availableYes.setSelected(false);
-        availabilitySelected = true;
     }//GEN-LAST:event_availableNoActionPerformed
 
     private void maintenanceNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintenanceNoActionPerformed
         maintenanceYes.setSelected(false);
-        certificationSelected = true;
     }//GEN-LAST:event_maintenanceNoActionPerformed
 
     /**

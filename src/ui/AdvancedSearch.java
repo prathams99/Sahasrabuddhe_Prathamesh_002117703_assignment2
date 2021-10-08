@@ -155,7 +155,7 @@ public class AdvancedSearch extends javax.swing.JFrame {
         jLabel6.setText("Maintenance Certificate");
 
         certifiedCar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        certifiedCar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Certified", "Uncertified" }));
+        certifiedCar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Certified", "Expired" }));
         certifiedCar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 certifiedCarActionPerformed(evt);
