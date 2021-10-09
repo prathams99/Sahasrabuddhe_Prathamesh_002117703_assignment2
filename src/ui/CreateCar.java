@@ -444,8 +444,6 @@ public class CreateCar extends javax.swing.JFrame {
                 }
             }
         });
-
-        // Dropdown list
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox availableNo;

@@ -285,8 +285,8 @@ public class AdvancedSearch extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Seats cannot be empty.");
             return;
         }
-        if ((Integer.parseInt(minSeatsInput.getText()) > 8)) {
-            JOptionPane.showMessageDialog(this, "Seats cannot be empty.");
+        if ((Integer.parseInt(maxInput.getText()) > 8)) {
+            JOptionPane.showMessageDialog(this, "Maximum number of seats is 8.");
             return;
         }
         searchValidatedSeats();

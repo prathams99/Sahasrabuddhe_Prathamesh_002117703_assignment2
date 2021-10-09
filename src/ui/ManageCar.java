@@ -421,16 +421,10 @@ public class ManageCar extends javax.swing.JFrame {
         for (CarProperties car : carList) {
             if (car.getCarSerialNumber() == Integer.parseInt(modelName)) {
                 modelNamesTemp.add(car);
-//                if (car.getBrandName().equals(searchString)) {
-//                    modelNamesTemp.add(car);
-//                } else {
-////                    JOptionPane.showMessageDialog(this, "Please enter a valid serial number.");
-//                    modelNamesTemp.add(car);
-//                }
             }
         }
         if (modelNamesTemp.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid serial number.");
+            JOptionPane.showMessageDialog(this, "Car not found! Please enter a valid serial number.");
             return;
         }
         indexGlobal = carList.indexOf(modelNamesTemp.get(0));
@@ -518,6 +512,22 @@ public class ManageCar extends javax.swing.JFrame {
         }
         if (!cp.validateNumber(newMax.getText()) || newMax.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter a valid number of maximum seats.");
+            return;
+        }
+        if ((Integer.parseInt(newMin.getText()) > (Integer.parseInt(newMax.getText())))) {
+            JOptionPane.showMessageDialog(this, "Minimum Seats cannot be more than Maximum Seats.");
+            return;
+        }
+        if ((Integer.parseInt(newMin.getText()) == (Integer.parseInt(newMax.getText())))) {
+            JOptionPane.showMessageDialog(this, "Minimum Seats cannot be same as of Maximum Seats.");
+            return;
+        }
+        if ((Integer.parseInt(newMin.getText()) == 0) || (Integer.parseInt(newMax.getText()) == 0)) {
+            JOptionPane.showMessageDialog(this, "Seats cannot be empty.");
+            return;
+        }
+        if ((Integer.parseInt(newMax.getText()) > 8)) {
+            JOptionPane.showMessageDialog(this, "Maximum number of seats is 8.");
             return;
         }
         if (!(availableYes.isSelected() | availableNo.isSelected())) {
