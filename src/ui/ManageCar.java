@@ -313,7 +313,7 @@ public class ManageCar extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Select Car");
+        jLabel2.setText("ENTER SERIAL NO");
 
         updateCar.setText("Search");
         updateCar.addActionListener(new java.awt.event.ActionListener() {
@@ -364,7 +364,7 @@ public class ManageCar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+                            .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchBySerial, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -377,7 +377,7 @@ public class ManageCar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 922, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,20 +417,28 @@ public class ManageCar extends javax.swing.JFrame {
         String searchString = "";
         modelName = searchBySerial.getText();
         searchString = searchBySerial.getText();
+        
+        if(!cp.validateNumber(searchBySerial.getText()) || searchBySerial.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid serial number.");
+            return;
+        }
 
         for (CarProperties car : carList) {
-            if (car.getCarSerialNumber() == Integer.parseInt(modelName)) {
+            if (car.getCarSerialNumber() == Integer.parseInt(searchBySerial.getText())) {
                 modelNamesTemp.add(car);
             }
         }
+        
         if (modelNamesTemp.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Car not found! Please enter a valid serial number.");
             return;
         }
+        
         indexGlobal = carList.indexOf(modelNamesTemp.get(0));
         panelUpdateCar.setVisible(true);
 
-        addCar = CarConfiguration.searchSerial(Integer.parseInt(modelName));
+        addCar = CarProperties.searchSerial(Integer.parseInt(modelName));
+        System.out.println("CRASH" + addCar.get(0));
         newModel.setText(addCar.get(0).getModelName());
         newBrand.setText(addCar.get(0).getBrandName());
         newYear.setText(String.valueOf(addCar.get(0).getCarYear()));

@@ -6,7 +6,10 @@
 package utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import static utils.CarConfiguration.carList;
 
 /**
  *
@@ -153,5 +156,15 @@ public class CarProperties {
     public String toString() {
         return this.getCarSerialNumber() + " " + this.getBrandName() + " " + this.getModelName() + " " + this.getCarYear()
                 + " " + this.getCarMinSeats() + " " + this.getCarMaxSeats() + " " + this.getCarCity() + " " + isAvailable() + " " + isCarMaintenanceCertificate();
+    }
+    
+    public static List<CarProperties> searchSerial(int serialNo) {
+        List<CarProperties> toUpdateCar = new ArrayList<CarProperties>();
+        for (CarProperties carProperties : carList) {
+            if (carProperties.getCarSerialNumber() == serialNo) {
+                toUpdateCar.add(carProperties);
+            }
+        }
+        return toUpdateCar;
     }
 }
