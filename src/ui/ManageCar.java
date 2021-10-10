@@ -437,7 +437,7 @@ public class ManageCar extends javax.swing.JFrame {
         indexGlobal = carList.indexOf(modelNamesTemp.get(0));
         panelUpdateCar.setVisible(true);
 
-        addCar = CarProperties.searchSerial(Integer.parseInt(modelName));
+        addCar = CarConfiguration.searchSerial(Integer.parseInt(modelName));
         System.out.println("CRASH" + addCar.get(0));
         newModel.setText(addCar.get(0).getModelName());
         newBrand.setText(addCar.get(0).getBrandName());
