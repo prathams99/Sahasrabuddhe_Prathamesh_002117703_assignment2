@@ -30,6 +30,15 @@ OBSERVATION AND GRAPHICAL ANALYSIS
 ----------------------------------
 Firstly, when we train the Menace with the strategies the probability losing is on higher side. But more the number of states we input to the Menace the better the probability of winning and draws has been observed. When training the Menace against the program we observed that it ran out of beads number of times and have lost so many times because of removal of all the beads.
 
+INSTRUCTIONS
+------------
+
+1) Clean the project
+2) Build the project
+3) Sync Maven (if required)
+4) Run Execute_Tic_Tac_Toe.java
+5) Enter cell number in console to play
+
 SCREENSHOTS
 -----------
 
